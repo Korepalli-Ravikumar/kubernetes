@@ -1,0 +1,24 @@
+apiVersion: apps/v1                 # ReplicaSet API version
+kind: ReplicaSet                    # Resource type is ReplicaSet
+
+metadata:                           # ReplicaSet metadata
+  name: web-rs                      # Name of the ReplicaSet
+
+spec:                               # ReplicaSet specification
+  replicas: 3                       # ReplicaSet: always maintain 3 Pods
+
+  selector:                         # ReplicaSet: selects which Pods to manage
+    matchLabels:
+      app: webapp                   # Must match Pod labels
+
+  template:                         # Pod template (used by ReplicaSet to create Pods)
+    metadata:                       # Pod metadata
+      name: myapp-pod               # Pod name (optional; usually auto-generated)
+      labels:
+        app: webapp                 # Pod label (must match selector)
+        type: front-end             # Extra Pod label
+
+    spec:                           # Pod specification
+      containers:                   # Containers inside the Pod
+        - name: nginx-container     # Container name
+          image: httpd              # Container image (Apache HTTP Server)

@@ -1,0 +1,15 @@
+apiVersion: v1                     # Kubernetes API version
+kind: Pod                          # Type of Kubernetes resource
+
+metadata:                          # Pod metadata
+  name: myapp                      # Name of the Pod
+  labels:                          # Labels for identification
+    app: webapp                    # Application name label
+    type: front-end                # Application tier label
+
+spec:                              # Pod specification
+  containers:                      # List of containers in the Pod
+    - name: nginx-container        # Name of the container
+      image: nginx:latest          # Docker image used for the container
+      ports:                       # Ports exposed by the container
+        - containerPort: 80        # Port on which Nginx listens
